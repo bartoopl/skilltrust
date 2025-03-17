@@ -47,7 +47,43 @@ export default function Home() {
                 </div>
             </section>
 
+            {/* Success Fee baner */}
+            <section className="bg-[#ECE7DE] py-16 text-center">
+                <div className="container mx-auto">
+                    <div className="flex justify-center mb-4">
+                        <img src="/successfee.svg" alt="Success Fee" className="h-24 w-auto" />
+                    </div>
+                    <h2 className="text-4xl font-bold mb-2">100% Success Fee</h2>
+                    <p className="text-gray-700 mb-6">
+                        Płacisz za efekty. Wiemy, że agencje, nie przepadają za takim podejściem.
+                    </p>
+                    <a href="/contact" className="inline-block bg-black text-white px-6 py-3 rounded-full">
+                        Kontakt z nami
+                    </a>
+                </div>
+            </section>
 
+            {/* Services Section */}
+            <section className="container mx-auto py-16 text-center">
+                <h2 className="text-3xl font-bold mb-6">We got you covered</h2>
+                <div className="flex flex-wrap justify-center gap-4">
+                    {["Find a job", "Career coaching", "Resume tips", "Freelancer hiring", "Scale teams"].map((service) => (
+                        <span key={service} className="border border-black px-4 py-2 rounded-full">
+                            {service}
+                        </span>
+                    ))}
+                </div>
+            </section>
+
+            {/* Hiring Companies */}
+            <section className="py-16 text-center">
+                <h2 className="text-3xl font-bold mb-6">Companies we hired for</h2>
+                <div className="flex flex-wrap justify-center gap-6">
+                    {["Zalando", "LobTwin", "Criteo", "Piloti", "Daimler"].map((company) => (
+                        <span key={company} className="text-xl font-semibold">{company}</span>
+                    ))}
+                </div>
+            </section>
 
             {/* Lista ofert pracy */}
             <section className="bg-[#ECE7DE] py-16">
