@@ -1,4 +1,6 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
   --background: #ffffff;
@@ -22,5 +24,18 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Lato, Helvetica, sans-serif;
+}
+
+h1 {
+  font-weight: 100 !important; /* Lżejszy niż domyślny (zazwyczaj 700-800) */
+  line-height: 1.2em !important;
+}
+
+h2 {
+  font-weight: 100 !important; /* Mniej intensywne */
+}
+
+h3 {
+  font-weight: 100 !important; /* Bardziej subtelne */
 }

@@ -1,103 +1,110 @@
+"use client";
+import Link from "next/link";
 import Image from "next/image";
+import { useEffect, useState } from "react";
+import { fetchJobs } from "@/lib/api";
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    const [jobs, setJobs] = useState([]);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
+    useEffect(() => {
+        async function loadJobs() {
+            const jobData = await fetchJobs();
+            setJobs(jobData);
+        }
+        loadJobs();
+    }, []);
+
+    return (
+        <main className="bg-[#F9F6F2] text-black">
+            {/* Hero Section */}
+            <section className="container mx-auto px-6 py-16 grid md:grid-cols-2 gap-8 items-center">
+
+                {/* Zdjęcie po lewej */}
+                <div>
+                    <Image
+                        src="https://plus.unsplash.com/premium_photo-1661517335128-2bcf290d58f6?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                        alt="Teamwork"
+                        width={600}
+                        height={400}
+                        className="rounded-lg shadow-md"
+                    />
+                </div>
+
+                {/* Tekst po prawej */}
+                <div className="text-left">
+                    <h1 className="text-5xl font-bold mb-4">
+                        Łączymy najlepszych specjalistów z właściwymi firmami.
+                    </h1>
+                    <p className="text-lg text-gray-700 mb-6">
+                        Jesteśmy ekspertami w rekrutacji dla branży automotive i inżynierii - znamy jej potrzeby od podszewki, bo sami byliśmy jej częścią.
+                    </p>
+                    <Link href="/jobs" className="inline-block bg-black text-white px-6 py-3 rounded-full">
+                        Skontaktuj się
+                    </Link>
+                </div>
+            </section>
+
+            {/* Success Fee baner */}
+            <section className="bg-[#ECE7DE] py-16 text-center">
+                <div className="container mx-auto">
+                    <div className="flex justify-center mb-4">
+                        <img src="/successfee.svg" alt="Success Fee" className="h-24 w-auto" />
+                    </div>
+                    <h2 className="text-4xl font-bold mb-2">100% Success Fee</h2>
+                    <p className="text-gray-700 mb-6">
+                        Płacisz za efekty. Wiemy, że agencje, nie przepadają za takim podejściem.
+                    </p>
+                    <a href="/contact" className="inline-block bg-black text-white px-6 py-3 rounded-full">
+                        Kontakt z nami
+                    </a>
+                </div>
+            </section>
+
+            {/* Services Section */}
+            <section className="container mx-auto py-16 text-center">
+                <h2 className="text-3xl font-bold mb-6">We got you covered</h2>
+                <div className="flex flex-wrap justify-center gap-4">
+                    {["Find a job", "Career coaching", "Resume tips", "Freelancer hiring", "Scale teams"].map((service) => (
+                        <span key={service} className="border border-black px-4 py-2 rounded-full">
+                            {service}
+                        </span>
+                    ))}
+                </div>
+            </section>
+
+            {/* Hiring Companies */}
+            <section className="py-16 text-center">
+                <h2 className="text-3xl font-bold mb-6">Companies we hired for</h2>
+                <div className="flex flex-wrap justify-center gap-6">
+                    {["Zalando", "LobTwin", "Criteo", "Piloti", "Daimler"].map((company) => (
+                        <span key={company} className="text-xl font-semibold">{company}</span>
+                    ))}
+                </div>
+            </section>
+
+            {/* Jobs List - Dynamicznie pobierane z Strapi */}
+            <section className="bg-[#ECE7DE] py-16">
+                <div className="container mx-auto">
+                    <h2 className="text-4xl font-bold mb-6 text-center">Znajdź pracę</h2>
+                    <div className="space-y-10">
+                        {jobs.length === 0 ? (
+                            <p className="text-center text-gray-700">Brak dostępnych ofert pracy.</p>
+                        ) : (
+                            jobs.map((job) => (
+                                <div key={job.documentId} className="bg-white p-6 rounded-lg border-2 border-black">
+                                    <h3 className="text-3xl font-bold">{job.Title}</h3>
+                                    <p className="text-gray-700">{job.Location}</p>
+                                    <p className="text-gray-500">{job.Salary} zł</p>
+                                    <Link href={`/jobs/${job.documentId}`} className="text-black-500 hover:underline">
+                                        Zobacz ofertę →
+                                    </Link>
+                                </div>
+                            ))
+                        )}
+                    </div>
+                </div>
+            </section>
+        </main>
+    );
 }
