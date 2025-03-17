@@ -91,7 +91,7 @@ export default function Home() {
                     <h2 className="text-3xl font-bold mb-6 text-center">Znajdź pracę</h2>
                     {/* Filtry ofert pracy */}
                     <section className="container mx-auto py-8 text-center">
-                        <h2 className="text-2xl font-bold mb-4">Filtruj oferty według branży:</h2>
+                        <h2 className="text-1xl font-bold mb-4">Filtruj oferty według branży:</h2>
                         <div className="flex flex-wrap justify-center gap-4">
                             <button
                                 className={`border px-4 py-2 rounded-full ${selectedIndustry === "" ? "bg-black text-white" : "border-black"}`}
@@ -115,7 +115,7 @@ export default function Home() {
                             <p className="text-center text-gray-700">Brak dostępnych ofert pracy.</p>
                         ) : (
                             jobs.map((job) => (
-                                <div key={job.documentId} className="bg-white p-6 rounded-lg border-2 border-black">
+                                <div key={job.documentId} className="bg-white p-12 rounded-lg border-2 border-black space-y-5">
                                     <h3 className="text-3xl font-bold">{job.Title}</h3>
                                     <p className="text-gray-700">{job.Location}</p>
                                     <p className="text-gray-500">{job.Salary} zł</p>
