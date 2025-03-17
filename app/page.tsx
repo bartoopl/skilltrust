@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { fetchJobs } from "@/lib/api";
+import { motion } from "framer-motion";
 
 export default function Home() {
     const [jobs, setJobs] = useState([]);
@@ -63,25 +64,53 @@ export default function Home() {
                 </div>
             </section>
 
-            {/* Services Section */}
-            <section className="container mx-auto py-16 text-center">
-                <h2 className="text-3xl font-bold mb-6">We got you covered</h2>
-                <div className="flex flex-wrap justify-center gap-4">
-                    {["Find a job", "Career coaching", "Resume tips", "Freelancer hiring", "Scale teams"].map((service) => (
-                        <span key={service} className="border border-black px-4 py-2 rounded-full">
-                            {service}
-                        </span>
-                    ))}
-                </div>
-            </section>
+            {/* "We got you covered" - sekcja dla talentów i firm */}
+            <section className="bg-[#F9F6F2] py-16 text-center">
+                <div className="container mx-auto">
+                    <h2 className="text-4xl font-bold mb-2">Wszechstronność</h2>
+                    <p className="text-gray-700 mb-10">Nasze usługi są przeznaczone zarówno dla talentów, jak i firm.
 
-            {/* Hiring Companies */}
-            <section className="py-16 text-center">
-                <h2 className="text-3xl font-bold mb-6">Companies we hired for</h2>
-                <div className="flex flex-wrap justify-center gap-6">
-                    {["Zalando", "LobTwin", "Criteo", "Piloti", "Daimler"].map((company) => (
-                        <span key={company} className="text-xl font-semibold">{company}</span>
-                    ))}
+                    </p>
+
+                    <div className="grid md:grid-cols-2 gap-12 items-start">
+                        {/* Talents */}
+                        <div className="flex flex-col items-center">
+                            <img src="/talents.svg" alt="For Talents" className="h-32 w-auto mb-4" />
+                            <button className="bg-black text-white px-6 py-3 rounded-full mb-3">Dla talentów</button>
+                            <div className="w-[2px] h-6 bg-black mb-4"></div>
+                            <div className="flex flex-col gap-4">
+                                {["Znajdziemy pracę", "Doradztwo zawodowe i coaching", "Wskazówki dotyczące CV i portfolio", "Przygotowania do rozmowy kwalifikacyjnej"].map((service, index) => (
+                                    <motion.div
+                                        key={index}
+                                        whileHover={{ x: [-5, 5, -5] }}
+                                        transition={{ duration: 0.4, repeat: Infinity, repeatType: "reverse" }}
+                                        className="border border-black px-6 py-2 rounded-full text-lg bg-white"
+                                    >
+                                        {service}
+                                    </motion.div>
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* Companies */}
+                        <div className="flex flex-col items-center">
+                            <img src="/companies.svg" alt="For Companies" className="h-32 w-auto mb-4" />
+                            <button className="bg-black text-white px-6 py-3 rounded-full mb-3">Dla firm</button>
+                            <div className="w-[2px] h-6 bg-black mb-4"></div>
+                            <div className="flex flex-col gap-4">
+                                {["Zatrudnianie stałych pracowników", "Znajdź najlepszych freelancerów", "Szybkie skalowanie zespołów", "Wbudowana rekrutacja"].map((service, index) => (
+                                    <motion.div
+                                        key={index}
+                                        whileHover={{ x: [-5, 5, -5] }}
+                                        transition={{ duration: 0.4, repeat: Infinity, repeatType: "reverse" }}
+                                        className="border border-black px-6 py-2 rounded-full text-lg bg-white"
+                                    >
+                                        {service}
+                                    </motion.div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </section>
 
