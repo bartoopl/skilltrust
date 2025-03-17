@@ -3,10 +3,12 @@ import axios from "axios";
 const API_URL = "http://localhost:1337/api";
 
 // Pobranie listy ofert pracy (dla strony głównej)
-export const fetchJobs = async () => {
+export const fetchJobs = async (industry = "") => {
     try {
-        console.log("🔍 Pobieram listę ofert pracy...");
-        const response = await axios.get(`${API_URL}/jobs`);
+        console.log(`🔍 Pobieram oferty pracy dla branży: ${industry || "Wszystkie"}`);
+
+        const query = industry ? `?filters[Industry][$eq]=${industry}` : "";
+        const response = await axios.get(`${API_URL}/jobs${query}`);
 
         if (!response.data.data) {
             throw new Error("❌ Brak dostępnych ofert.");
