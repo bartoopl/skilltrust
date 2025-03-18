@@ -22,6 +22,7 @@
     "typescript": "^5"
   },
   "dependencies": {
+    "@strapi/types": "^5.11.2",
     "axios": "^1.8.3",
     "framer-motion": "^12.5.0",
     "next": "^14.2.24",
