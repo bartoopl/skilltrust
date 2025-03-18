@@ -1,4 +1,4 @@
-export default ({ env }) => ({
+export default ({ env }: { env: (key: string, defaultValue?: any) => string | boolean }) => ({
   auth: {
     secret: env('ADMIN_JWT_SECRET'),
   },
