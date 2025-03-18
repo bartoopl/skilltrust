@@ -11,7 +11,7 @@ export default ({ env }: { env: (key: string, defaultValue?: any) => string | bo
     },
   },
   flags: {
-    nps: env.bool('FLAG_NPS', true),
-    promoteEE: env.bool('FLAG_PROMOTE_EE', true),
+    nps: Boolean(env('FLAG_NPS', true)),
+    promoteEE: Boolean(env('FLAG_PROMOTE_EE', true)),
   },
 });
