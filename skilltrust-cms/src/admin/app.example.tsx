@@ -1,4 +1,4 @@
-import type { StrapiApp } from '@strapi/admin/strapi-admin';
+import type { StrapiApp } from '@strapi/strapi';
 
 export default {
   config: {
