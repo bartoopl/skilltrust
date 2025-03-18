@@ -1,9 +1,11 @@
+// app/page.tsx
 "use client";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { useEffect, useState } from "react";
-import { fetchJobs } from "@/lib/api";
 import { motion } from "framer-motion";
+import { fetchJobs } from "@/lib/api";
+import JobCard from "@/components/JobCard";
 
 // Definicja interfejsu
 interface Job {
@@ -11,11 +13,13 @@ interface Job {
     Title: string;
     Location: string;
     Salary: number | string;
+    Industry: string;
+    Company: string;
 }
 
 export default function Home() {
     const [jobs, setJobs] = useState<Job[]>([]);
-    const [selectedIndustry, setSelectedIndustry] = useState(""); // Wybrana branża
+    const [selectedIndustry, setSelectedIndustry] = useState("");
 
     // Lista dostępnych branż
     const industries = ["IT", "Produkcja", "Automotive"];
@@ -28,6 +32,10 @@ export default function Home() {
         }
         loadJobs();
     }, [selectedIndustry]);
+
+    // Ograniczamy liczbę wyświetlanych ofert do 5
+    const displayedJobs = jobs.slice(0, 5);
+    const hasMoreJobs = jobs.length > 5;
 
     return (
         <main className="bg-[#F9F6F2] text-black">
@@ -76,9 +84,7 @@ export default function Home() {
             <section className="bg-[#F9F6F2] py-16 text-center">
                 <div className="container mx-auto">
                     <h2 className="text-4xl font-bold mb-2">Wszechstronność</h2>
-                    <p className="text-gray-700 mb-10">Nasze usługi są przeznaczone zarówno dla talentów, jak i firm.
-
-                    </p>
+                    <p className="text-gray-700 mb-10">Nasze usługi są przeznaczone zarówno dla talentów, jak i firm.</p>
 
                     <div className="grid md:grid-cols-2 gap-12 items-start">
                         {/* Talents */}
@@ -126,6 +132,7 @@ export default function Home() {
             <section className="bg-[#ECE7DE] py-16">
                 <div className="container mx-auto">
                     <h2 className="text-3xl font-bold mb-6 text-center">Znajdź pracę</h2>
+
                     {/* Filtry ofert pracy */}
                     <section className="container mx-auto py-8 text-center">
                         <h2 className="text-1xl font-bold mb-4">Filtruj oferty według branży:</h2>
@@ -147,22 +154,36 @@ export default function Home() {
                             ))}
                         </div>
                     </section>
-                    <div className="space-y-10">
-                        {jobs.length === 0 ? (
+
+                    <div className="flex flex-col">
+                        {displayedJobs.length === 0 ? (
                             <p className="text-center text-gray-700">Brak dostępnych ofert pracy.</p>
                         ) : (
-                            jobs.map((job) => (
-                                <div key={job.documentId} className="bg-white p-12 rounded-lg border-2 border-black space-y-5">
-                                    <h3 className="text-3xl font-bold">{job.Title}</h3>
-                                    <p className="text-gray-700">{job.Location}</p>
-                                    <p className="text-gray-500">{job.Salary} zł</p>
-                                    <Link href={`/jobs/${job.documentId}`} className="inline-block bg-black text-white px-6 py-3 rounded-full">
-                                        Zobacz ofertę
-                                    </Link>
+                            displayedJobs.map((job) => (
+                                <div key={job.documentId} className="mb-12">
+                                    <JobCard
+                                        id={job.documentId}
+                                        title={job.Title}
+                                        company={job.Company}
+                                        location={job.Location}
+                                        salary={job.Salary}
+                                    />
                                 </div>
                             ))
                         )}
                     </div>
+
+                    {/* Przycisk "Zobacz inne ogłoszenia" */}
+                    {hasMoreJobs && (
+                        <div className="text-center mt-8">
+                            <Link
+                                href="/jobs"
+                                className="inline-block bg-black text-white px-6 py-3 rounded-full hover:bg-gray-800 transition-colors duration-200"
+                            >
+                                Zobacz inne ogłoszenia
+                            </Link>
+                        </div>
+                    )}
                 </div>
             </section>
         </main>
