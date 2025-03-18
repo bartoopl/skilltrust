@@ -52,7 +52,7 @@ export default ({ env }: { env: (key: string, defaultValue?: any) => any }) => {
 
   return {
     connection: {
-      client,
+      client: client as keyof typeof connections,
       ...connections[client],
       acquireConnectionTimeout: parseInt(env('DATABASE_CONNECTION_TIMEOUT', '60000'), 10),
     },
