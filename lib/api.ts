@@ -16,8 +16,12 @@ export const fetchJobs = async (industry = "") => {
 
         console.log("✅ Oferty pracy pobrane:", response.data.data);
         return response.data.data;
-    } catch (error) {
-        console.error("❌ Błąd pobierania ofert:", error.response?.data || error.message);
+    } catch (error: unknown) {
+        if (error instanceof Error) {
+            console.error("❌ Błąd pobierania ofert:", error.message);
+        } else {
+            console.error("❌ Wystąpił nieznany błąd:", error);
+        }
         return [];
     }
 };
@@ -34,8 +38,12 @@ export const fetchJob = async (documentId: string) => {
 
         console.log(`✅ Oferta znaleziona:`, response.data.data);
         return response.data.data;
-    } catch (error) {
-        console.error(`❌ Błąd pobierania oferty o documentId ${documentId}:`, error.response?.data || error.message);
+    } catch (error: unknown) {
+        if (error instanceof Error) {
+            console.error(`❌ Błąd pobierania oferty o documentId ${documentId}:`, error.message);
+        } else {
+            console.error(`❌ Wystąpił nieznany błąd o documentId ${documentId}:`, error);
+        }
         return null;
     }
 };
