@@ -11,6 +11,9 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@strapi/admin": "^5.11.2",
+    "@strapi/plugin-content-manager": "^4.25.12",
+    "@strapi/plugin-content-type-builder": "^4.25.12",
+    "@strapi/strapi": "^5.11.2",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
@@ -23,7 +26,6 @@
     "typescript": "^5"
   },
   "dependencies": {
-    "@strapi/strapi": "^5.11.2",
     "@strapi/types": "^5.11.2",
     "axios": "^1.8.3",
     "framer-motion": "^12.5.0",
