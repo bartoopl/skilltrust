@@ -61,7 +61,7 @@ export default async function StoryPage({ params }: { params: { slug: string } }
 
                             {author && (
                                 <span className="text-gray-800">
-                                    Autor: <strong>{author}</strong>
+                                    Autor: <strong>{typeof author === 'object' ? author.name : author}</strong>
                                 </span>
                             )}
                         </div>

@@ -4,18 +4,18 @@ import { useEffect, useState } from "react";
 import { fetchStories } from "@/lib/api";
 import StoryCard from "@/components/StoryCard";
 
-interface Story {
+interface StoryItem {
     slug: string;
     title: string;
     excerpt?: string;
     publishedAt: string;
     mainImage?: any;
     category?: string;
-    author?: string;
+    author?: string | { name: string; [key: string]: any };
 }
 
 export default function StoriesPage() {
-    const [stories, setStories] = useState<Story[]>([]);
+    const [stories, setStories] = useState<StoryItem[]>([]);
     const [selectedCategory, setSelectedCategory] = useState("");
 
     // Lista dostępnych kategorii
@@ -30,7 +30,17 @@ export default function StoriesPage() {
     useEffect(() => {
         async function loadStories() {
             const storyData = await fetchStories(selectedCategory);
-            setStories(storyData);
+            // Konwersja danych do naszego typu StoryItem
+            const formattedStories: StoryItem[] = storyData.map((item: any) => ({
+                slug: item.slug,
+                title: item.title,
+                excerpt: item.excerpt,
+                publishedAt: item.publishedAt,
+                mainImage: item.mainImage,
+                category: item.category,
+                author: item.author
+            }));
+            setStories(formattedStories);
         }
         loadStories();
     }, [selectedCategory]);

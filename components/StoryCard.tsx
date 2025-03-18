@@ -12,7 +12,8 @@ interface StoryCardProps {
     publishedAt: string;
     mainImage?: any;
     category?: string;
-    author?: string;
+    author?: string | { name: string; [key: string]: any };
+    // Zmiana nazwy interfejsu, ale właściwości pozostają takie same
 }
 
 const StoryCard: React.FC<StoryCardProps> = ({
@@ -52,7 +53,7 @@ const StoryCard: React.FC<StoryCardProps> = ({
                     )}
 
                     <div className="flex justify-between items-center text-sm text-gray-600 mt-auto pt-4 border-t border-gray-100">
-                        {author && <span>{author}</span>}
+                        {author && <span>{typeof author === 'object' ? author.name : author}</span>}
                         <time dateTime={publishedAt}>{formatDate(publishedAt)}</time>
                     </div>
                 </div>
