@@ -1,7 +1,7 @@
 import path from 'path';
 
 export default ({ env }: { env: (key: string, defaultValue?: any) => any }) => {
-  const client = env('DATABASE_CLIENT', 'sqlite');
+  const client = env('DATABASE_CLIENT', 'sqlite') as keyof typeof connections;
 
   const connections = {
     mysql: {
@@ -52,7 +52,7 @@ export default ({ env }: { env: (key: string, defaultValue?: any) => any }) => {
 
   return {
     connection: {
-      client: client as keyof typeof connections,
+      client: client,
       ...connections[client],
       acquireConnectionTimeout: parseInt(env('DATABASE_CONNECTION_TIMEOUT', '60000'), 10),
     },
