@@ -74,7 +74,7 @@ export default function Navbar() {
                             <div className="space-y-4 text-xl md:text-2xl font-bold">
                                 {[
                                     { name: "Znajdź pracę", path: "/jobs" },
-                                    { name: "Znajdź tralenty", path: "/talents" },
+                                    { name: "Znajdź talenty", path: "/talents" },
                                     { name: "Prześlij CV", path: "/drop-cv" },
                                     { name: "Prześlij swoje wymagania", path: "/drop-requirement" },
                                     { name: "Historie", path: "/stories" },
