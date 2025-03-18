@@ -1,21 +1,44 @@
-import axios from "axios";
-
-const API_URL = "http://localhost:1337/api";
+// lib/api.ts
+import { client } from './sanity/client';
 
 // Pobranie listy ofert pracy (dla strony głównej)
 export const fetchJobs = async (industry = "") => {
     try {
         console.log(`🔍 Pobieram oferty pracy dla branży: ${industry || "Wszystkie"}`);
 
-        const query = industry ? `?filters[Industry][$eq]=${industry}` : "";
-        const response = await axios.get(`${API_URL}/jobs${query}`);
+        let query = `*[_type == "job"`;
 
-        if (!response.data.data) {
-            throw new Error("❌ Brak dostępnych ofert.");
+        if (industry) {
+            query += ` && industry == "${industry}"`;
         }
 
-        console.log("✅ Oferty pracy pobrane:", response.data.data);
-        return response.data.data;
+        query += `]{
+      _id,
+      title,
+      location,
+      salary,
+      industry,
+      company
+    }`;
+
+        const response = await client.fetch(query);
+
+        if (!response || response.length === 0) {
+            console.log("❌ Brak dostępnych ofert.");
+            return [];
+        }
+
+        console.log("✅ Oferty pracy pobrane:", response);
+
+        // Mapujemy dane, aby zachować zgodność ze starym formatem API
+        return response.map((job: any) => ({
+            documentId: job._id,
+            Title: job.title,
+            Location: job.location,
+            Salary: job.salary,
+            Industry: job.industry,
+            Company: job.company
+        }));
     } catch (error: unknown) {
         if (error instanceof Error) {
             console.error("❌ Błąd pobierania ofert:", error.message);
@@ -30,14 +53,26 @@ export const fetchJobs = async (industry = "") => {
 export const fetchJob = async (documentId: string) => {
     try {
         console.log(`🔍 Pobieram ofertę pracy o documentId: ${documentId}`);
-        const response = await axios.get(`${API_URL}/jobs/${documentId}?populate=*`);
 
-        if (!response.data.data) {
+        const query = `*[_type == "job" && _id == "${documentId}"][0]`;
+        const response = await client.fetch(query);
+
+        if (!response) {
             throw new Error(`❌ Oferta o documentId ${documentId} nie istnieje.`);
         }
 
-        console.log(`✅ Oferta znaleziona:`, response.data.data);
-        return response.data.data;
+        console.log(`✅ Oferta znaleziona:`, response);
+
+        // Mapujemy dane, aby zachować zgodność ze starym formatem API
+        return {
+            documentId: response._id,
+            Title: response.title,
+            Description: response.description,
+            Location: response.location,
+            Salary: response.salary,
+            Industry: response.industry,
+            Company: response.company
+        };
     } catch (error: unknown) {
         if (error instanceof Error) {
             console.error(`❌ Błąd pobierania oferty o documentId ${documentId}:`, error.message);
