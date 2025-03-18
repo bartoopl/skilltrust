@@ -5,8 +5,16 @@ import { useEffect, useState } from "react";
 import { fetchJobs } from "@/lib/api";
 import { motion } from "framer-motion";
 
+// Definicja interfejsu
+interface Job {
+    documentId: string;
+    Title: string;
+    Location: string;
+    Salary: number | string;
+}
+
 export default function Home() {
-    const [jobs, setJobs] = useState([]);
+    const [jobs, setJobs] = useState<Job[]>([]);
     const [selectedIndustry, setSelectedIndustry] = useState(""); // Wybrana branża
 
     // Lista dostępnych branż
