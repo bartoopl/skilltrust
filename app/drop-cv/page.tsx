@@ -1,6 +1,5 @@
 "use client";
-import { useState } from "react";
-import Image from "next/image";
+import { useState, ChangeEvent, FormEvent } from "react";
 
 export default function DropCV() {
     const [formData, setFormData] = useState({
@@ -9,27 +8,31 @@ export default function DropCV() {
         email: "",
         jobTitle: "",
         linkedin: "",
-        jobType: [],
-        officePolicy: [],
+        jobType: [] as string[],
+        officePolicy: [] as string[],
         message: "",
-        file: null,
+        file: null as File | null,
     });
 
-    const handleChange = (e) => {
-        const { name, value, type, checked } = e.target;
+    // Dodajemy typ dla zdarzenia zmiany w formularzu
+    const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+        const { name, value, type, checked } = e.target as HTMLInputElement;
 
         if (type === "checkbox") {
             setFormData((prev) => ({
                 ...prev,
                 [name]: checked
-                    ? [...prev[name], value]
-                    : prev[name].filter((v) => v !== value),
+                    ? [...prev[name as keyof typeof prev] as string[], value]
+                    : (prev[name as keyof typeof prev] as string[]).filter((v) => v !== value),
             }));
         } else if (type === "file") {
-            setFormData((prev) => ({
-                ...prev,
-                file: e.target.files[0],
-            }));
+            const fileInput = e.target as HTMLInputElement;
+            if (fileInput.files && fileInput.files.length > 0) {
+                setFormData((prev) => ({
+                    ...prev,
+                    file: fileInput.files[0],
+                }));
+            }
         } else {
             setFormData((prev) => ({
                 ...prev,
@@ -38,7 +41,8 @@ export default function DropCV() {
         }
     };
 
-    const handleSubmit = async (e) => {
+    // Dodajemy typ dla zdarzenia submit
+    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
         const formDataToSend = new FormData();
