@@ -16,7 +16,7 @@ export default function DropCV() {
 
     // Dodajemy typ dla zdarzenia zmiany w formularzu
     const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-        const { name, value, type, checked } = e.target as HTMLInputElement;
+        const {name, value, type, checked} = e.target as HTMLInputElement;
 
         if (type === "checkbox") {
             setFormData((prev) => ({
@@ -26,11 +26,18 @@ export default function DropCV() {
                     : (prev[name as keyof typeof prev] as string[]).filter((v) => v !== value),
             }));
         } else if (type === "file") {
-            const fileInput = e.target as HTMLInputElement;
-            if (fileInput.files && fileInput.files.length > 0) {
+            const {files} = e.target as HTMLInputElement;
+            if (files && files.length > 0) {
+                setFormData((prev) => {
+                    return ({
+                        ...prev,
+                        file: files[0], // Plik zostanie zapisany tylko jeśli istnieje
+                    });
+                });
+            } else {
                 setFormData((prev) => ({
                     ...prev,
-                    file: fileInput.files[0],
+                    file: null, // Jeśli brak pliku, ustawiamy `null`
                 }));
             }
         } else {
