@@ -127,7 +127,33 @@ export default function Home() {
                     </div>
                 </div>
             </section>
-
+            {/* Sekcja bezpłatnej konsultacji */}
+            <section className="bg-white py-16">
+                <div className="container mx-auto px-6 grid md:grid-cols-2 gap-8 items-center">
+                    <div className="text-left">
+                        <h2 className="text-4xl font-bold mb-6">
+                            Zamów bezpłatną konsultację
+                        </h2>
+                        <p className="text-lg text-gray-700 mb-8">
+                            Umów bezpłatną konsultację, podczas której omówimy potrzeby Twojej firmy.
+                            Sprawdź jak możemy Ci pomóc w pozyskaniu kandydatów z kompetencjami,
+                            które wesprą Twój biznes.
+                        </p>
+                        <Link href="/bezplatna-konsultacja" className="inline-block bg-black text-white px-6 py-3 rounded-full hover:bg-gray-800 transition-colors">
+                            Wyślij zapytanie
+                        </Link>
+                    </div>
+                    <div className="flex justify-center">
+                        <Image
+                            src="/konsultacja.svg"
+                            alt="Bezpłatna konsultacja"
+                            width={500}
+                            height={400}
+                            className="w-full max-w-md"
+                        />
+                    </div>
+                </div>
+            </section>
             {/* Lista ofert pracy */}
             <section className="bg-[#ECE7DE] py-16">
                 <div className="container mx-auto">
