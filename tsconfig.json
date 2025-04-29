@@ -19,8 +19,7 @@
       }
     ],
     "paths": {
-      "@/*": ["./*"],
-      "@strapi/types/admin": ["./node_modules/@strapi/types/admin"]
+      "@/*": ["./*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

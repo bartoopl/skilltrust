@@ -17,7 +17,6 @@ const nextConfig = {
             }
         ],
     },
-    // Inne konfiguracje, jeśli są już zdefiniowane
 };
 
 module.exports = nextConfig;
