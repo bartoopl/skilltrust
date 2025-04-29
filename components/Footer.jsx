@@ -11,8 +11,8 @@ export default function Footer() {
                 <div>
                     <Image src="/logo-white.svg" alt="Logo" width={180} height={50} />
                     <p className="mt-4 text-gray-300">Skontaktuj się</p>
-                    <a href="mailto:natalia@skilltrust.pl" className="block text-lg font-semibold mt-2 hover:underline">
-                        natalia@skilltrust.pl
+                    <a href="mailto:office@skilltrust.pl" className="block text-lg font-semibold mt-2 hover:underline">
+                        office@skilltrust.pl
                     </a>
                     {/* Ikony Social Media */}
                     <div className="flex space-x-4 mt-4">
