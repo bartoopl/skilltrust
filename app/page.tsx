@@ -10,11 +10,11 @@ import JobCard from "@/components/JobCard";
 // Definicja interfejsu
 interface Job {
     documentId: string;
-    Title: string;
-    Location: string;
-    Salary: number | string;
-    Industry: string;
-    Company: string;
+    title: string;
+    location: string;
+    salary: number | string;
+    industry: string;
+    company: string;
 }
 
 export default function Home() {
@@ -189,10 +189,11 @@ export default function Home() {
                                 <div key={job.documentId} className="mb-12">
                                     <JobCard
                                         id={job.documentId}
-                                        title={job.Title}
-                                        company={job.Company}
-                                        location={job.Location}
-                                        salary={job.Salary}
+                                        title={job.title}
+                                        company={job.company}
+                                        location={job.location}
+                                        salary={job.salary}
+                                        jobType={job.industry}
                                     />
                                 </div>
                             ))

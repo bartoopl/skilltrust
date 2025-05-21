@@ -21,7 +21,7 @@ export default async function JobPage({ params }: { params: { documentId: string
         );
     }
 
-    const { Title, Description, Location, Company, Salary, Industry } = jobData;
+    const { title, description, location, company, salary, industry } = jobData;
 
     return (
         <main className="bg-[#F9F6F2] py-16">
@@ -33,7 +33,7 @@ export default async function JobPage({ params }: { params: { documentId: string
                         <span className="mx-2">›</span>
                         <Link href="/jobs" className="hover:underline">Znajdź pracę</Link>
                         <span className="mx-2">›</span>
-                        <span className="text-gray-900">{Title}</span>
+                        <span className="text-gray-900">{title}</span>
                     </div>
                 </div>
 
@@ -41,22 +41,22 @@ export default async function JobPage({ params }: { params: { documentId: string
                 <div className="bg-white border-2 border-black rounded-3xl p-8 mb-8 shadow-sm">
                     <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-4">
                         <div>
-                            <h1 className="text-3xl md:text-4xl font-bold mb-4">{Title}</h1>
+                            <h1 className="text-3xl md:text-4xl font-bold mb-4">{title}</h1>
                             <div className="flex flex-wrap gap-3 mb-4">
                                 <span className="inline-block border border-black rounded-full px-3 py-1 text-sm font-medium bg-gray-100">
-                                    {Industry || "Brak kategorii"}
+                                    {industry || "Brak kategorii"}
                                 </span>
                                 <span className="inline-block border border-gray-300 rounded-full px-3 py-1 text-sm text-gray-700">
-                                    📍 {Location}
+                                    📍 {location}
                                 </span>
                             </div>
                             <p className="text-xl text-gray-700">
-                                <span className="font-bold">{Company}</span>
+                                <span className="font-bold">{company}</span>
                             </p>
                         </div>
                         <div className="bg-[#ECE7DE] rounded-2xl p-4 text-center flex-shrink-0 w-full md:w-auto">
                             <p className="text-gray-700 mb-1">Wynagrodzenie</p>
-                            <p className="text-2xl font-bold">{typeof Salary === 'number' ? `${Salary.toLocaleString()} zł` : Salary}</p>
+                            <p className="text-2xl font-bold">{typeof salary === 'number' ? `${salary.toLocaleString()} zł` : salary}</p>
                         </div>
                     </div>
                 </div>
@@ -66,8 +66,8 @@ export default async function JobPage({ params }: { params: { documentId: string
                     <h2 className="text-2xl font-bold mb-6">Opis stanowiska</h2>
 
                     <div className="prose prose-lg max-w-none">
-                        {Description ? (
-                            <PortableText value={Description} />
+                        {description ? (
+                            <PortableText value={description} />
                         ) : (
                             <p className="text-gray-700 italic">Brak szczegółowego opisu.</p>
                         )}

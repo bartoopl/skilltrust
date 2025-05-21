@@ -2,13 +2,13 @@
 import { client } from '@/sanity/lib/client'
 
 export async function fetchJobs(industry = '') {
-    const query = `*[_type == "job" ${industry ? `&& industry == "${industry}"` : ''}]{
+    const query = `*[_type == "job" ${industry ? `&& industry == \"${industry}\"` : ''}]{
     "documentId": _id,
-    Title,
-    Location,
-    Salary,
-    Industry,
-    Company
+    title,
+    location,
+    salary,
+    industry,
+    company
   }`
 
     try {
