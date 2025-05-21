@@ -73,6 +73,7 @@ export default function Navbar() {
                             />
                             <div className="space-y-4 text-xl md:text-2xl font-bold">
                                 {[
+                                    { name: "Wyceń rekrutację", path: "/wycena" },
                                     { name: "Znajdź pracę", path: "/jobs" },
                                     { name: "Znajdź talenty", path: "/talents" },
                                     { name: "Prześlij CV", path: "/drop-cv" },
