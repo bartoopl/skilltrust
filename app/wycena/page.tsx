@@ -12,9 +12,9 @@ export default function WycenaPage() {
             <h1 className="text-4xl md:text-5xl font-bold mb-4">Wyceń rekrutację dla swojej firmy</h1>
             <p className="text-lg mb-6">
               {/* Text from image */}
-              Zamiast dostarczać Ci gotowe rozwiązania, zaczynamy od zrozumienia Twojego biznesu. Pomożemy rozwinąć Twój zespół, dopasowując elementy oferty do potrzeb Twojej firmy. Wycenimy rekrutację, jakich kompetencji potrzebujesz, by realizować swoje cele. Na bazie tych informacji doradzimy, jaki kandydat i w jakim poziomie wynagrodzenia jest dziś poszukiwany w Twojej organizacji, a następnie przygotujemy wycenę rekrutacji.
-              <br/><br/>
-              Specjalizujemy się w rekrutacjach dla segmentu B2B (doradztwo firma-firma) oraz RDC o złożonym procesie zakupu. Wspieramy firmy, które szukają wysoko wykwalifikowanych specjalistów w obszarach: automotive, IT, finansów i bankowości, farmacji, medycyny, FMCG oraz marketingu. Dzięki naszemu doświadczeniu możesz być pewien, że znajdziemy kandydata dopasowanego do specyfiki Twojej branży, procesów celów i kultury organizacyjnej.
+                Jesteśmy przekonani, że każdy biznes jest inny i ma unikatowe potrzeby, dlatego nie zaoferujemy Ci gotowego, szablonowego rozwiązania. Rekrutację zaczynamy od zrozumienia Twojego biznesu, następnie dopasujemy elementy oferty do potrzeb Twojej firmy. Doradzimy Ci również, jaki kandydat wpisze się w Twój zespół i przygotujemy wycenę rekrutacji.
+                <br/><br/>
+                Specjalizujemy się w rekrutacjach na stanowiska inżynieryjne, w branży automotive, IT, dla dużych firm produkcyjnych  (doradztwo firma-firma). Wspieramy firmy, które szukają wysoko wykwalifikowanych specjalistów w obszarach: automotive, IT, HR i marketingu. Znamy branże automotive „od wewnątrz”, dlatego możesz być pewien, że znajdziemy kandydata dopasowanego do specyfiki Twojej branży, procesów celów i kultury organizacyjnej.
             </p>
           </div>
           <div className="bg-white p-8 rounded-lg shadow-md text-black">
@@ -44,10 +44,7 @@ export default function WycenaPage() {
         <h2 className="text-3xl font-bold mb-12">Do jakich obszarów rekrutujemy?</h2>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           {/* Placeholder icons/text - replace with actual content later */}
-          <div className="flex flex-col items-center">
-            <div className="mb-4 w-16 h-16 bg-gray-300 rounded-full"></div> {/* Placeholder for icon */}
-            <p className="text-lg font-medium">Do działów sprzedaży</p>
-          </div>
+
           <div className="flex flex-col items-center">
              <div className="mb-4 w-16 h-16 bg-gray-300 rounded-full"></div> {/* Placeholder for icon */}
              <p className="text-lg font-medium">Do działów marketingu</p>
@@ -66,7 +63,7 @@ export default function WycenaPage() {
            </div>
            <div className="flex flex-col items-center">
              <div className="mb-4 w-16 h-16 bg-gray-300 rounded-full"></div> {/* Placeholder for icon */}
-             <p className="text-lg font-medium">Do działów finansów</p>
+             <p className="text-lg font-medium">Do działów IT</p>
            </div>
            <div className="flex flex-col items-center">
              <div className="mb-4 w-16 h-16 bg-gray-300 rounded-full"></div> {/* Placeholder for icon */}
@@ -86,15 +83,17 @@ export default function WycenaPage() {
           <div className="grid md:grid-cols-3 gap-8">
             <div>
               <h3 className="text-2xl font-bold mb-4">01. Jakie pytania Ci zadamy?</h3>
-              <p className="text-gray-700">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+              <p className="text-gray-700">Aby precyzyjnie wycenić usługę, zapytamy Cię o szczegółowy profil poszukiwanego kandydata – od niezbędnych kompetencji i doświadczenia, po oczekiwania finansowe. Kluczowe będzie również zrozumienie specyfiki stanowiska i panującej kultury biznesowej Twojej firmy, abyśmy mogli znaleźć osobę, która idealnie wpasuje się w zespół. Dzięki tym informacjom przygotujemy ofertę dopasowaną do Twoich unikalnych potrzeb. </p>
             </div>
             <div>
               <h3 className="text-2xl font-bold mb-4">02. Z kim najczęściej pracujemy?</h3>
-              <p className="text-gray-700">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+              <p className="text-gray-700">Skuteczna rekrutacja to efekt ścisłej współpracy z kilkoma kluczowymi osobami w Twojej firmie: działem HR, osobą zlecającą rekrutację, oraz przyszłym przełożonym kandydata. To właśnie manager, który na co dzień pracuje z zespołem, najlepiej rozumie jego dynamikę, luki kompetencyjne oraz specyficzne wymagania stanowiska. Jego wgląd w codzienne operacje i strategie zespołu jest dla nas bezcenny. Dzięki temu możemy nie tylko dopasować umiejętności, ale również kulturę osobistą i styl pracy kandydata do realnych potrzeb Twojego zespołu.
+              </p>
             </div>
             <div>
               <h3 className="text-2xl font-bold mb-4">03. Czy konsultacja do czegoś zobowiązuje?</h3>
-              <p className="text-gray-700">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+              <p className="text-gray-700">Absolutnie nie. Potraktuj naszą pierwszą rozmowę jak spotkanie biznesowe przy dobrej kawie (nawet jeśli będzie online). To dla nas okazja, by lepiej poznać Twoje potrzeby, a dla Ciebie – by zrozumieć, jak możemy Ci pomóc. Konsultacja może być pierwszym krokiem do potencjalnej współpracy, nie wymaga od Ciebie niczego poza poświęconym czasem na swobodną rozmowę. Wierzymy, że budowanie relacji opartych na zaufaniu zaczyna się od transparentności i braku presji.
+              </p>
             </div>
           </div>
         </div>
